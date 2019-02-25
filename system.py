@@ -1,16 +1,17 @@
 class System:
     """ Keeps a list of planets and sums the total mass in solar system """
 
-    def __init__(self, bodies):
+    def __init__(self):
         self.bodies = []
 
-    def add(self):
+    def add(self, body):
         self.bodies.append(self)
 
     def total_mass(self):
-        mass = 0
+        total = 0
         for body in self.bodies:
-            mass += body.mass
+            total += body.mass
+        return total
 
 
 class Body:
@@ -45,3 +46,13 @@ class Moon(Body):
         super().__init__(name, mass)
         self.month = month
         self.planet = planet
+
+
+earth = Planet('Earth', 5972000000000000000000000, 24, 365)
+earth_moon = Moon('Earth\'s Moon', 73476730900000000000000, 29, 'Earth')
+sun = Star('Sun', 1989000000000000000000000000000, 'g-type')
+solar_system = System()
+solar_system.add(earth)
+solar_system.add(earth_moon)
+solar_system.add(sun)
+# print(solar_system.total_mass())
